@@ -15,6 +15,9 @@ void setup() {
   RFduinoBLE.advertisementData = "foobar";
   RFduinoBLE.deviceName = "RFDuino";
   RFduinoBLE.begin();
+
+  // Start in disconnected state
+  digitalWrite(ledRed, HIGH);
 }
 
 void loop() {
@@ -22,9 +25,13 @@ void loop() {
 }
 
 void RFduinoBLE_onConnect(){
-
+  // Turn light green when BLE connects
+  digitalWrite(ledRed, LOW);
+  digitalWrite(ledGreen, HIGH);
 }
 
 void RFduinoBLE_onDisconnect(){
-
+  // Turn light red when BLE disconnects
+  digitalWrite(ledGreen, LOW);
+  digitalWrite(ledRed, HIGH);
 }
